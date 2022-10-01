@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --main-color: #191919;
+  --text-color: #dddddd;
+  --second-color: #e43d40;
+  --df-margin: 10px;
+  --df-padding: 10px;
+  --df-radius: 5px;
+  --df-border: 5px solid var(--second-color);
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--main-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h4 {
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.AppSimonSays {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameBoard {
+  width: calc(15vw + 150px);
+  height: calc(15vw + 150px);
+  /* background: rgb(163, 63, 63); */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 5px;
+}
+
+.gameBoard.block {
+  pointer-events: none;
+}
+
+.panel {
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+
+.startBtn {
+  padding: 5px 30px;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+  color: var(--text-color);
+  cursor: pointer;
+  border: none;
+}
+
+.panel,
+.startBtn {
+  border-radius: 5px;
+  background: linear-gradient(145deg, #171717, #1b1b1b);
+  box-shadow: 20px 20px 50px #0e0e0e, -20px -20px 50px #242424;
+  position: relative;
+  transition: 0.5s;
+}
+
+.panel:hover,
+.startBtn:hover {
+  border-radius: 5px;
+  background: linear-gradient(145deg, #6c67bb, #5b569e);
+  box-shadow: 20px 20px 60px #565295, -20px -20px 60px #746ec9;
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+  width: 50%;
+  height: 50%;
+  border-radius: 4px;
+  background: linear-gradient(145deg, #67aebb, #56939e);
+  box-shadow: 20px 20px 60px #528b95, -20px -20px 60px #6ebbc9;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 0.3s;
+}
+
+.panel.active::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.gameBoard.next {
+  animation: ok 0.4s;
+}
+.gameBoard.youLost .panel {
+  background: linear-gradient(145deg, #c95353, #a94646);
+  transform: rotate(-45deg) scale(1.4);
+}
+.gameBoard.youLost {
+  transform: scale(0.7);
+}
+@keyframes ok {
+  0% {
+    transform: translateY(0%);
+  }
+  30% {
+    transform: translateY(5%);
+  }
+  70% {
+    transform: translateY(-5%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
