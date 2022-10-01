@@ -1,27 +1,27 @@
 <div align="center" id="top"> 
   
 <h1 align="center">Simon says</h1>
-  <a target="_blank" href="https://sevetoo.github.io/simonSays/">
+  <a target="_blank" href="https://sevetoo.github.io/saimonSays/">
   <img src="./preview.png" alt="simon says preview" />
   </a>
-  <a target="_blank" href="https://sevetoo.github.io/simonSays/">
+  <a target="_blank" href="https://sevetoo.github.io/saimonSays/">
   <img src="./preview2.png" alt="simon says preview2" />
   </a>
 
 &#xa0;
 
-<a target="_blank" href="https://sevetoo.github.io/simonSays/">Demo</a>
+<a target="_blank" href="https://sevetoo.github.io/saimonSays/">Demo</a>
 
 </div>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/SeveToo/multiplication-for-learning?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/SeveToo/saimonSays?color=56BEB8">
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/SeveToo/multiplication-for-learning?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/SeveToo/saimonSays?color=56BEB8">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/SeveToo/multiplication-for-learning?color=56BEB8">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/SeveToo/saimonSays?color=56BEB8">
 
-  <img alt="License" src="https://img.shields.io/github/license/SeveToo/multiplication-for-learning?color=56BEB8">
+  <img alt="License" src="https://img.shields.io/github/license/SeveToo/saimonSays?color=56BEB8">
 </p>
 
 <p align="center">
@@ -54,12 +54,12 @@ The following tools were used in this project:
 ## :white_check_mark: Requirements
 
 You just need a browser.
-https://sevetoo.github.io/simonSays/
+https://sevetoo.github.io/saimonSays/
 
 ## :checkered_flag: Starting
 
 download the project and open **index.html**
-or open in browser ( <a href="https://sevetoo.github.io/simonSays/" >click link</a> )
+or open in browser ( <a href="https://sevetoo.github.io/saimonSays/" >click link</a> )
 
 ## 😎 Made by
 
