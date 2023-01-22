@@ -3,35 +3,63 @@ const h3 = document.querySelector('h3')
 const h4 = document.querySelector('h4')
 const gameBoard = document.querySelector('.gameBoard')
 const startBtn = document.querySelector('.startBtn')
+
 let numbers = []
 let currentLevel = 1
 
-function rand(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min)
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+
+const showLevel = () => {
+  h3.innerHTML = `Level: ${currentLevel}`
 }
 
-function start() {
-  gameBoard.classList.remove('youLost')
-  h4.innerHTML = ''
-  currentLevel = 1
-  for (let i = 0; i < 10000; i++) {
-    numbers[i] = rand(0, 8)
-  }
-  console.log(numbers.map(el => el + 1))
-  output()
-}
-startBtn.onclick = () => {
-  start()
-}
-
-function showPanel(nr) {
+const showPanel = nr => {
   panel[nr].classList.add('active')
   setTimeout(() => {
     panel[nr].classList.remove('active')
   }, 500)
 }
 
-function output() {
+const checkAnswer = answer => {
+  answer = answer.split('')
+  foo = true
+  if (answer.length < currentLevel) {
+    for (let i = 0; i < answer.length; i++) {
+      if (answer[i] != numbers[i]) foo = false
+    }
+    if (!foo) youLost()
+  }
+
+  if (answer.length == currentLevel) {
+    for (let i = 0; i < currentLevel; i++) {
+      if (answer[i] != numbers[i]) foo = false
+    }
+    if (foo) nextLevel()
+    else youLost()
+  }
+}
+
+const waitToInput = () => {
+  let inputNumbers = ''
+  panel.forEach(el => {
+    el.onclick = () => {
+      showPanel(el.getAttribute('date-nr'))
+      inputNumbers += el.getAttribute('date-nr')
+      checkAnswer(inputNumbers)
+      if (inputNumbers.length == currentLevel) {
+        //   checkAnswer(inputNumbers)
+        lockKeyboard()
+      }
+    }
+  })
+}
+
+const clearMonits = () => {
+  gameBoard.classList.remove('youLost')
+  h4.innerHTML = ''
+}
+
+const setMonits = () => {
   showLevel()
   let i = 0
   const interval = setInterval(() => {
@@ -48,70 +76,56 @@ function output() {
   }, (currentLevel + 1) * 1000)
 }
 
-function waitToInput() {
-  let inputNumbers = ''
-  panel.forEach(el => {
-    el.onclick = () => {
-      showPanel(el.getAttribute('date-nr'))
-      inputNumbers += el.getAttribute('date-nr')
-      if (inputNumbers.length == currentLevel) {
-        checkAnswer(inputNumbers)
-        lockKeyboard()
-      }
-    }
-  })
+const randomizeLevelSequence = () => {
+  for (let i = 0; i < 10000; i++) {
+    numbers[i] = rand(0, 8)
+  }
 }
 
-function showLevel() {
-  h3.innerHTML = `Level: ${currentLevel}`
+const start = () => {
+  currentLevel = 1
+  clearMonits()
+  randomizeLevelSequence()
+  //   console.log(numbers.map(el => el + 1))
+  setMonits()
+}
+startBtn.onclick = () => {
+  start()
 }
 
-function lockKeyboard() {
+const lockKeyboard = () => {
   gameBoard.classList.add('block')
 }
 
-function unLockKeyboard() {
+const unLockKeyboard = () => {
   gameBoard.classList.remove('block')
 }
 
-function showOK() {
+const animationCorrectAnswer = () => {
   gameBoard.classList.add('next')
   setTimeout(() => {
     gameBoard.classList.remove('next')
   }, 500)
 }
 
-function showLost() {
-  gameBoard.classList.add('youLost')
-}
-
-function nextLevel() {
+const nextLevel = () => {
   setTimeout(() => {
-    showOK()
+    animationCorrectAnswer()
     setTimeout(() => {
       currentLevel++
-      output()
+      setMonits()
     }, 500)
   }, 500)
 }
 
-function youLost() {
-  showLost()
+const showLost = () => {
+  gameBoard.classList.add('youLost')
   h3.innerHTML = 'You Lost'
   h4.innerHTML = 'Click RESTART to try again'
   startBtn.innerHTML = 'RESTART'
 }
 
-function checkAnswer(answer) {
-  answer = answer.split('')
-  foo = true
-  for (let i = 0; i < currentLevel; i++) {
-    // h3.innerHTML = answer[i] + " " + numbers[i];
-    if (answer[i] != numbers[i]) foo = false
-  }
-  if (foo) nextLevel()
-  else youLost()
-  // h4.innerHTML = foo;
+const youLost = () => {
+  showLost()
+  lockKeyboard()
 }
-
-// showPanel(1);
